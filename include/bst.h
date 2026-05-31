@@ -1,6 +1,5 @@
-// Copyright 2021 NNTU-CS
-#ifndef INCLUDE_BST_H_
-#define INCLUDE_BST_H_
+// Copyright 2023
+#pragma once
 #include <algorithm>
 
 template<typename T>
@@ -35,7 +34,7 @@ class BST {
 
   int depthNode(Node* node) {
     if (node == nullptr) {
-      return 0;
+      return -1; // Чтобы при прибавлении 1 для листьев получался 0
     }
     return 1 + std::max(depthNode(node->left), depthNode(node->right));
   }
@@ -66,10 +65,13 @@ class BST {
   ~BST() { destroyTree(root); }
 
   void insert(T val) { root = insertNode(root, val); }
-  int depth() { return depthNode(root); }
+
+  int depth() {
+    if (root == nullptr) return 0;
+    return depthNode(root);
+  }
+
   int search(T val) { return searchNode(root, val); }
-  
+
   Node* getRoot() const { return root; }
 };
-
-#endif  // INCLUDE_BST_H_
