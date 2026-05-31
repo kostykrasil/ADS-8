@@ -1,11 +1,13 @@
-// Copyright 2021 NNTU-CS
-#include "bst.h"
+// Copyright 2023
+#include <algorithm>
+#include <cctype>
 #include <fstream>
 #include <iostream>
-#include <vector>
 #include <string>
-#include <cctype>
 #include <utility>
+#include <vector>
+
+#include "bst.h"
 
 void extractNodes(BST<std::string>::Node* node,
                   std::vector<std::pair<std::string, int>>& vec) {
@@ -38,7 +40,7 @@ void makeTree(BST<std::string>& tree, const char* filename) {
       }
     }
   }
-  
+
   if (!current_word.empty()) {
     tree.insert(current_word);
   }
